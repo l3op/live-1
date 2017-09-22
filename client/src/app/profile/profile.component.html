@@ -1,0 +1,73 @@
+<div [ngClass]="{'body-overlay': bodyOverlay.status}">
+  <header>
+    <p class="create-text" (click)='create_live()'>Create Live</p>
+    <img src="app/logo.png" alt="logo" class="logo" [routerLink]="['/home']" >
+    <img src="assets/search.png" alt="" class="search" [routerLink]="['/search']">
+    <img src="assets/notification.png" alt="" class="notification">
+    <div class="dropdown">
+      <img src="assets/profile-icon.png" alt="" class="profile-top-pic" >
+      <div class="dropdown-content">
+        <a [routerLink]="['/profile']">Profile</a>
+        <a href="#">Setting</a>
+        <a  (click)='log_out()' [routerLink]="['/']">Log Out</a>
+      </div>
+    </div>
+  </header>
+
+    <img src="assets/profile-icon.png" alt="" class="profile-main-pic" >
+    <h3 class="user-name">{{user}}</h3>
+    <section class="stat">
+      <div class="following" [routerLink]="['/followers']">
+        <p>Followers</p>
+        <p>{{followers}}</p>
+      </div>
+      <div class="live-count" [routerLink]="['/lives']">
+        <p>Lives</p>
+        <p>{{live_count}}</p>
+      </div>
+      <div class="followers" [routerLink]="['/following']">
+        <p>Following</p>
+        <p>{{following}}</p>
+      </div>
+    </section>
+
+  <section class="profile-main">
+    <nav>
+      <div class="view-by" (click)='change_view("future")' (click)=' filter_value = "future" '>
+        <h3>F U T U R E</h3>
+        <div class="highlighter" *ngIf='view_by.future'></div>
+      </div>
+      <div class="view-by" (click)='change_view("current")' (click)=' filter_value = "current" '>
+        <h3>C U R R E N T</h3>
+        <div class="highlighter" *ngIf='view_by.current'></div>
+      </div>
+      <div class="view-by" (click)='change_view("past")' (click)=' filter_value = "past" '>
+        <h3>P A S T</h3>
+        <div class="highlighter" *ngIf='view_by.past'></div>
+      </div>
+    </nav>
+
+
+  <div class="profile-lives">
+    <div *ngFor='let live of lives | filterDate:filter_value ' class='live' [style.background-image]='show_image(live.image)'>
+      <div class="overlay3">
+        <div class="top">
+          <p>{{live._attendees.length}} Attending</p>
+          <button (click)='unattend_live(live._id)' class="attend">U N A T T E N D</button>
+        </div>
+        <h3>{{live.title}}</h3>
+        <img src="assets/profile-icon.png" alt="" class="profile-pic" (click)='open_user(live._user._id)'>
+        <div class="middle">
+          <p (click)='open_user(live._user._id)'>{{live._user.fullname}}</p>
+        </div>
+        <div class="bottom">
+
+          <p class="time">{{ live.date_time | date:'j' }}</p> <span class="dot1">.</span> <p class="miles">{{live.city}}</p> <span class="dot2">.</span> <p class="date">{{live.date_time | date: 'mediumDate'}}</p>
+        </div>
+        <img src="assets/open.png" alt="open" (click)='open_live(live._id)' class='open'>
+      </div>
+    </div>
+  </div>
+  </section>
+
+</div>

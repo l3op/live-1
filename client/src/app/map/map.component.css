@@ -1,0 +1,15 @@
+.container { transform: translate(-50%); position: absolute; top: 10%; left: 50%;
+  background-color: white; width: 450px; height: 450px; }
+agm-map {
+  height: 400px;
+}
+p {
+  display: inline-block;
+  margin-left: 10px;
+  margin-bottom: 30px;
+}
+
+#close-map {
+  right: 10px;
+top: 10px;
+}

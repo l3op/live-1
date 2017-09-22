@@ -1,0 +1,15 @@
+<h3>View {{interest.name}}</h3>
+<div *ngFor='let live of interest_lives' class='live'>
+  <div *ngIf='user_attending.includes(live.live._id)'>
+    <p>{{live.live.title}} by {{live.user}}  {{live.live._attendees.length}} </p>
+    <p>{{live.live.interests}}</p>
+    <img src="images/{{live.live.image}}" alt="live">
+    <button (click)='unattend_live(live.live._id)'>Unattend</button>
+  </div>
+  <div *ngIf='!user_attending.includes(live.live._id)'>
+    <p>{{live.live.title}} by {{live.user}}  {{live.live._attendees.length}} </p>
+    <p>{{live.live.interests}}</p>
+    <img src="images/{{live.live.image}}" alt="live">
+    <button (click)='attend_live(live.live._id)'>Attend</button>
+  </div>
+</div>

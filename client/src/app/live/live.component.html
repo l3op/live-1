@@ -1,0 +1,57 @@
+<div [ngClass]="{'body-overlay': bodyOverlay.status}">
+<header>
+  <img src="app/logo.png" alt="logo" class="logo" [routerLink]="['/home']">
+  <img src="assets/search.png" alt="search" class="search" [routerLink]="['/search']">
+  <img src="assets/notification.png" alt="" class="notification">
+  <div class="dropdown">
+    <img src="assets/profile-icon.png" alt="" class="profile-top-pic" >
+    <div class="dropdown-content">
+      <a [routerLink]="['/profile']">Profile</a>
+      <a href="#">Setting</a>
+      <a  (click)='log_out()' [routerLink]="['/']">Log Out</a>
+    </div>
+  </div>
+</header>
+<div *ngIf='live' id="live-body">
+  <div class="live-top" [style.background-image]='show_image(live.image)' >
+    <div class="overlay">
+      <h2 class='live-title'>{{live.title}}</h2>
+      <div *ngIf='!user_attending.includes(live._id) && !user_lives.includes(live._id)'>
+        <button (click)='attend_live(live._id)' class="attend">A T T E N D</button>
+      </div>
+      <div *ngIf='user_attending.includes(live._id) && !user_lives.includes(live._id)'>
+        <button (click)='unattend_live(live._id)' class="attend">U N A T T E N D</button>
+      </div>
+      <div class="live-user">
+        <img src="assets/profile-icon.png" alt="" class="live-user-pic" (click)='open_user(live._user._id)'>
+        <p (click)='open_user(live._user._id)'>{{live._user.fullname}}</p>
+      </div>
+        <p id="post-message" (click)='open_post()'>Write Post</p>
+      <div class="live-info" >
+
+        <p>{{live.date_time | date:'j' }}</p> <span class="live-dot">.</span> <p >{{live.city}} <img src="assets/placeholder.svg" alt="" (click)='open_map()'></p> <span class="live-dot">.</span> <p>{{live.date_time | date: 'mediumDate'}}</p>
+      </div>
+      <p id="live-attending">{{live._attendees.length}} Attending</p>
+    </div>
+  </div>
+</div>
+
+<section>
+  <div class="view-by">
+    <h3>P O S T </h3>
+    <div class="highlighter"></div>
+  </div>
+
+  <div *ngFor='let post of posts' class="posts">
+    <div class="post-user">
+      <img src="assets/person2.jpg" alt="" class="live-user-pic" (click)='open_user(post._user._id)'>
+      <p >  {{post._user.fullname}} </p>
+      <h5>{{post.createdAt | timeAgo }}</h5>
+    </div>
+
+    <h3>{{post.content}}</h3>
+    <img src="assets/reply.png" alt="" class="post-reply">
+    <img src="assets/heart.png" alt="" class="post-like">
+  </div>
+</section>
+  </div>

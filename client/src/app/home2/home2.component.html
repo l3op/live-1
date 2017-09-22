@@ -1,0 +1,71 @@
+<div [ngClass]="{'body-overlay': bodyOverlay.status}">
+<header>
+  <p class="create-text" (click)='create_live()'>Create Live</p>
+  <img src="app/logo.png" alt="logo" class="logo" >
+  <img src="assets/search.png" alt="search" class="search" [routerLink]="['/search']" >
+  <img src="assets/notification.png" alt="" class="notification">
+  <div class="dropdown">
+    <img src="assets/profile-icon.png" alt="" class="profile-top-pic" >
+    <div class="dropdown-content">
+      <a [routerLink]="['/profile']">Profile</a>
+      <a href="#">Setting</a>
+      <a (click)='log_out()' [routerLink]="['/']">Log Out</a>
+    </div>
+  </div>
+</header>
+
+<section class="interests">
+  <h3>I N T E R E S T S</h3>
+  <div class="highlighter"></div>
+  <div *ngFor='let interest of interests' class="{{interest.name}}" class='interest'>
+    <div class="overlay2">
+      <div *ngIf='user_interests.includes(interest.name)'>
+        <img src="assets/unadd.png" alt="add" class="add" (click)='unadd_interest(interest)'>
+        <p><a>{{interest.name}}</a></p>
+      </div>
+      <div *ngIf='!user_interests.includes(interest.name)'>
+        <img src="assets/add.png" alt="add" class="add"  (click)='add_interest(interest)'>
+        <p><a [routerLink]="['/', interest.name]">{{interest.name}}</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="lives">
+  <nav>
+    <div class="view-by">
+      <h3>T I M E L I N E</h3>
+      <div class="highlighter"></div>
+    </div>
+  </nav>
+
+  <div *ngFor='let live of all_lives' class='live' [style.background-image]='show_image(live.live.image)'>
+    <div class="overlay3">
+      <div class="top">
+        <p>{{live.live._attendees.length}} Attending</p>
+        <div *ngIf='user_attending.includes(live.live._id) && !user_lives.includes(live.live._id)'>
+          <button (click)='unattend_live(live.live._id)' class="attend">U N A T T E N D</button>
+        </div>
+        <div *ngIf='!user_attending.includes(live.live._id) && !user_lives.includes(live.live._id)'>
+          <button (click)='attend_live(live.live._id)' class="attend">A T T E N D</button>
+        </div>
+        <div *ngIf='user_lives.includes(live.live._id)'>
+          <button class="attend" (click)='delete_live(live.live.title, live.live._id)'>D E L E T E</button>
+        </div>
+      </div>
+      <h3>{{live.live.title}}</h3>
+      <img src="assets/profile-icon.png" alt="" class="profile-pic" (click)='open_user(live.user_id)'>
+      <div class="middle">
+        <p (click)='open_user(live.user_id)'>{{live.user}}</p>
+      </div>
+      <div class="bottom">
+
+        <p class="time">{{live.live.date_time | date:'j' }}</p> <span class="dot1">.</span> <p class="miles">{{live.live.city}}</p> <span class="dot2">.</span> <p class="date">{{live.live.date_time | date: 'mediumDate'}}</p>
+      </div>
+      <img src="assets/open.png" alt="open" (click)='open_live(live.live._id)' class='open'>
+    </div>
+  </div>
+</section>
+  </div>
+
+  <router-outlet></router-outlet>

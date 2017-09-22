@@ -1,0 +1,7 @@
+<div class='container'>
+  <p>{{address}} </p>
+  <button md-dialog-close class='close-button' id='close-map'> </button>
+    <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="16">
+      <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
+    </agm-map>
+</div>

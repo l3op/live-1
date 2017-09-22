@@ -1,0 +1,58 @@
+<div [ngClass]="{'body-overlay': bodyOverlay.status}">
+  <main>
+    <div class="overlay">
+      <img src="app/logo.png" alt="logo" class="logo">
+      <h2 id="slogan">Connect with people virtually and in reality.</h2>
+      <button (click)='sign_up()' id="sign-up">S I G N &ensp; U P</button>
+      <p id="log-in">Already have an account? <a (click)='log_in()'><span>Log In</span></a></p>
+      <p id='logIn-error'>{{error}}</p>
+    </div>
+  </main>
+
+  <section class="interests">
+    <h3>I N T E R E S T S</h3>
+    <div class="highlighter"></div>
+    <div *ngFor='let interest of interests, let ind = index' class="{{interest.name}}" class='interest'>
+      <div class="overlay2">
+        <img src="assets/add.png" alt="add" class="add" (click)='sign_up()'>
+        <p>{{interest.name}}</p> 
+      </div>
+    </div>
+  </section>
+
+  <section class="lives">
+    <nav>
+      <div class="view-by" (click)='change_view("today")' (click)='city = ""' (click)=' filter_value = "current" '>
+        <h3 >T O D A Y</h3>
+        <div class="highlighter" *ngIf='view_by.today'></div>
+      </div>
+      <div class="view-by" (click)='change_view("near_you")' (click)='city = user_location' (click)=' filter_value = "" '>
+        <h3>N E A R &ensp; Y O U</h3>
+        <div class="highlighter" *ngIf='view_by.near_you'></div>
+      </div>
+      <div class="view-by" (click)='change_view("all")' (click)='city = ""' (click)=' filter_value = "" '>
+        <h3>A L L</h3>
+        <div class="highlighter" *ngIf='view_by.all'></div>
+      </div>
+    </nav>
+
+
+    <div *ngFor='let live of lives | filterDate:filter_value  | filterCity:city ' class='live' [style.background-image]='show_image(live.image)' >
+      <div class="overlay3">
+        <div class="top">
+          <p>{{live._attendees.length}} Attending</p>
+          <button class="attend" (click)='sign_up()'>A T T E N D</button>
+        </div>
+        <h3>{{live.title}}</h3>
+        <img src="assets/profile-icon.png" alt="" class="profile-pic" (click)='open_user(live._user._id)'>
+        <div class="middle">
+          <p (click)='open_user(live._user._id)'>{{live._user.fullname}}</p>
+        </div>
+        <div class="bottom">
+          <p class="time">{{ live.date_time | date:'j' }}</p> <span class="dot1">.</span> <p class="miles">{{live.city}}</p> <span class="dot2">.</span> <p class="date">{{live.date_time | date: 'mediumDate'}}</p>
+        </div>
+        <img src="assets/open.png" alt="open" (click)='sign_up()' class='open'>
+      </div>
+    </div>
+  </section>
+</div>

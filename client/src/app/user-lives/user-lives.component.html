@@ -1,0 +1,43 @@
+<div [ngClass]="{'body-overlay': bodyOverlay.status}">
+<header>
+  <p class="create-text" (click)='create_live()'>Create Live</p>
+  <img src="app/logo.png" alt="logo" class="logo" [routerLink]="['/home']" >
+  <img src="assets/search.png" alt="" class="search" [routerLink]="['/search']">
+  <img src="assets/notification.png" alt="" class="notification">
+  <div class="dropdown">
+    <img src="assets/profile-icon.png" alt="" class="profile-top-pic" >
+    <div class="dropdown-content">
+      <a [routerLink]="['/profile']">Profile</a>
+      <a href="#">Setting</a>
+      <a  (click)='log_out()' [routerLink]="['/']">Log Out</a>
+    </div>
+  </div>
+</header>
+<section class="lives">
+
+  <nav>
+    <div class="view-by">
+      <h3>M Y &ensp; L I V E S</h3>
+      <div class="highlighter"></div>
+    </div>
+  </nav>
+
+  <div *ngFor='let live of lives' class='live' [style.background-image]='show_image(live.image)'>
+    <div class="overlay3">
+      <div class="top">
+        <p>{{live._attendees.length}} Attending</p>
+        <button class="attend" (click)='delete_live(live.title, live._id)'>D E L E T E</button>
+      </div>
+      <h3>{{live.title}}</h3>
+      <img src="assets/profile-icon.png" alt="" class="profile-pic">
+      <div class="middle">
+        <p>{{user_name}}</p>
+      </div>
+      <div class="bottom">
+        <p class="time">{{live.date_time | date:'j' }}</p> <span class="dot1">.</span> <p class="miles">{{live.city}}</p> <span class="dot2">.</span> <p class="date">{{live.date_time | date: 'mediumDate'}}</p>
+      </div>
+      <img src="assets/open.png" alt="open" (click)='open_live(live._id)' class='open'>
+    </div>
+  </div>
+</section>
+</div>

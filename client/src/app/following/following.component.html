@@ -1,0 +1,30 @@
+<div [ngClass]="{'body-overlay': bodyOverlay.status}">
+<header>
+  <p class="create-text" (click)='create_live()'>Create Live</p>
+  <img src="app/logo.png" alt="logo" class="logo" [routerLink]="['/home']">
+  <img src="assets/search.png" alt="" class="search" [routerLink]="['/search']">
+  <img src="assets/notification.png" alt="" class="notification">
+  <div class="dropdown">
+    <img src="assets/profile-icon.png" alt="" class="profile-top-pic" >
+    <div class="dropdown-content">
+      <a [routerLink]="['/profile']">Profile</a>
+      <a href="#">Setting</a>
+      <a  (click)='log_out()' [routerLink]="['/']">Log Out</a>
+    </div>
+  </div>
+</header>
+<nav>
+  <div class="view-by">
+    <h3>M Y &ensp; F O L L O W I N G</h3>
+    <div class="highlighter"></div>
+  </div>
+</nav>
+
+<div *ngFor='let user of following'  class='followers'>
+  <img src="assets/profile-icon.png" alt="" class="follower-profile-pic" (click)='open_user(user._id)'>
+  <p (click)='open_user(user._id)'>{{user.fullname}}</p>
+  <button (click)='unfollow(user._id)' *ngIf='following_id.includes(user._id)' class="follow-button">U N F O L L O W</button>
+  <button (click)='follow(user._id)' *ngIf='!following_id.includes(user._id)' class="follow-button">F O L L O W</button>
+</div>
+
+</div>

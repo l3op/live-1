@@ -1,0 +1,50 @@
+<h2 class="search-title">Search</h2>
+
+<p><input type="search" name="search" [(ngModel)]='user_search' class="search-box" placeholder="S E A R C H &ensp; F O R &ensp; L I V E"></p>
+
+<div class="search-users">
+  <div *ngFor='let user of all_users' class='search-user' >
+    <img src="assets/profile-icon.png" alt="" class="search-profile-pic" (click)='open_user(user._id)'>
+    <p (click)='open_user(user._id)'>{{user.fullname}}</p>
+    <button (click)='unfollow(user._id)' *ngIf='user_following.includes(user._id)' class="search-follow">U N F O L L O W</button>
+    <button (click)='follow(user._id)' *ngIf='!user_following.includes(user._id)' class="search-follow">F O L L O W</button>
+  </div>
+  </div>
+
+
+<section class="lives">
+  <nav>
+    <div class="view-by">
+      <h3>L I V E S</h3>
+      <div class="highlighter"></div>
+    </div>
+  </nav>
+
+  <div *ngFor='let live of lives | search:user_search' class='live' [style.background-image]='show_image(live.image)' >
+    <div class="overlay3">
+      <div class="top">
+        <p>{{live._attendees.length}} Attending</p>
+
+        <div *ngIf='user_attending.includes(live._id)  && !user_lives.includes(live._id)'>
+          <button (click)='unattend_live(live._id)' class="attend">U N A T T E N D</button>
+        </div>
+        <div *ngIf='!user_attending.includes(live._id) && !user_lives.includes(live._id)'>
+          <button (click)='attend_live(live._id) ' class="attend">A T T E N D</button>
+        </div>
+        <div *ngIf='user_lives.includes(live._id)'>
+          <button class="attend" (click)='delete_live(live.title, live._id)'>D E L E T E</button>
+        </div>
+
+      </div>
+      <h3>{{live.title}}</h3>
+      <img src="assets/profile-icon.png" alt="" class="profile-pic" (click)='open_user(live._user._id)'>
+      <div class="middle">
+        <p (click)='open_user(live._user._id)'>{{live._user.fullname}}</p>
+      </div>
+      <div class="bottom">
+        <p class="time">{{ live.date_time | date:'j' }}</p> <span class="dot1">.</span> <p class="miles">{{live.city}}</p> <span class="dot2">.</span> <p class="date">{{live.date_time | date: 'mediumDate'}}</p>
+      </div>
+      <img src="assets/open.png" alt="open" (click)='open_live(live._id)' class='open'>
+    </div>
+  </div>
+</section>

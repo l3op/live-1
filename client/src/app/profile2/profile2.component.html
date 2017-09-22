@@ -1,0 +1,59 @@
+<header>
+  <img src="app/logo.png" alt="logo" class="logo" >
+</header>
+
+  <img src="assets/profile-icon.png" alt="" class="profile-main-pic" >
+  <h3 class="user-name">{{user}}</h3>
+  <section class="stat">
+    <div class="following">
+      <p>Followers</p>
+      <p>{{followers}}</p>
+    </div>
+    <div class="live-count">
+      <p>Lives</p>
+      <p>{{live_count}}</p>
+    </div>
+    <div class="followers">
+      <p>Following</p>
+      <p>{{following}}</p>
+    </div>
+  </section>
+
+<section class="profile-main">
+  <nav>
+    <div class="view-by" (click)='change_view("future")' (click)=' filter_value = "future" '>
+      <h3>F U T U R E</h3>
+      <div class="highlighter" *ngIf='view_by.future'></div>
+    </div>
+    <div class="view-by" (click)='change_view("current")' (click)=' filter_value = "current" '>
+      <h3>C U R R E N T</h3>
+      <div class="highlighter" *ngIf='view_by.current'></div>
+    </div>
+    <div class="view-by" (click)='change_view("past")' (click)=' filter_value = "past" '>
+      <h3>P A S T</h3>
+      <div class="highlighter" *ngIf='view_by.past'></div>
+    </div>
+  </nav>
+
+
+<div class="profile-lives">
+  <div *ngFor='let live of lives | filterDate:filter_value ' class='live' [style.background-image]='show_image(live.image)'>
+    <div class="overlay3">
+      <div class="top">
+        <p>{{live._attendees.length}} Attending</p>
+        <button class="attend" (click)='sign_up()'>A T T E N D</button>
+      </div>
+      <h3>{{live.title}}</h3>
+      <img src="assets/profile-icon.png" alt="" class="profile-pic">
+      <div class="middle">
+        <p>{{live._user.fullname}}</p>
+      </div>
+      <div class="bottom">
+
+        <p class="time">{{ live.date_time | date:'j' }}</p> <span class="dot1">.</span> <p class="miles">{{live.city}}</p> <span class="dot2">.</span> <p class="date">{{live.date_time | date: 'mediumDate'}}</p>
+      </div>
+      <img src="assets/open.png" alt="open" (click)='open_live(live._id)' class='open'>
+    </div>
+  </div>
+</div>
+</section>

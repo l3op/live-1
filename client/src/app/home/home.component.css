@@ -1,0 +1,40 @@
+
+#slogan{
+  color: white;
+  top: 120px;
+  left: 50%;
+  transform: translate(-50%);
+  position: absolute;
+  font-size: 1.7em;
+  text-align: center;
+}
+#sign-up{
+  top: 280px;
+  left: 50%;
+  transform: translate(-50%);
+  position: absolute;
+  background-color: unset;
+  border: 1.5px solid aqua;
+  border-radius: 50px;
+  color: aqua;
+  padding: 6px 20px;
+}
+#log-in{
+  font-size: .7em;
+  color: white;
+  top: 320px;
+  left: 50%;
+  transform: translate(-50%);
+  position: absolute;
+}
+#log-in a {
+  color: aqua;
+}
+#logIn-error {
+  font-size: .7em;
+  color: red;
+  top: 350px;
+  left: 50%;
+  transform: translate(-50%);
+  position: absolute;
+}

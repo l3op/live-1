@@ -1,0 +1,49 @@
+.search-title {
+  left: 50%;
+  position: relative;
+}
+
+.search-box {
+  border: none;
+    border-bottom: 1px solid;
+    width: 500px;
+    margin-left: 50px;
+        margin-bottom: 20px;
+}
+
+.search-profile-pic {
+  display: inline-block;
+position: relative;
+width: 40px;
+height: 40px;
+border-radius: 100px;
+border: 3px solid grey;
+}
+
+.search-follow  {
+  background-color: unset;
+  border: 1.5px solid black;
+  border-radius: 50px;
+  padding: 6px 20px;
+  position: relative;
+    top: -15px;
+}
+.search-user p {
+  display: inline-block;
+  position: relative;
+  top: -15px;
+      margin: 10px;
+}
+.search-user {
+  display: inline-block;
+  margin: 10px;
+padding-left: 50px;
+padding-right: 50px;
+border-right: 1px solid grey;
+}
+.search-users {
+  margin: 10px auto;
+  width: 95%;
+  overflow: auto;
+  white-space: nowrap;
+}
