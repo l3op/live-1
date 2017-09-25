@@ -74,7 +74,7 @@ export class LiveComponent implements OnInit {
     this.subscriptions = [new_post_subscribed, user_post_subscribed]
   }
   show_image(src) {
-    return `url(assets/lives/${src})`
+    return `url(lives/${src})`
   }
   open_user(id) {
     this._router1.navigate(['/user3', id])

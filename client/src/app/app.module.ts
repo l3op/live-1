@@ -22,7 +22,6 @@ import { AuthorizationComponent } from './authorization/authorization.component'
 import { CreateLiveComponent } from './create-live/create-live.component';
 import { Home2Component } from './home2/home2.component';
 import { ProfileComponent } from './profile/profile.component';
-import { InterestComponent } from './interest/interest.component';
 import { LiveComponent } from './live/live.component';
 import { PostComponent } from './post/post.component';
 import { Profile2Component } from './profile2/profile2.component';
@@ -46,7 +45,6 @@ import { FollowersComponent } from './followers/followers.component'
     AuthorizationComponent,
     Home2Component,
     ProfileComponent,
-    InterestComponent,
     LiveComponent,
     PostComponent,
     FilterDatePipe,

@@ -68,7 +68,7 @@ export class ProfileComponent implements OnInit {
     }
   }
   show_image(src) {
-    return `url(assets/lives/${src})`
+    return `url(lives/${src})`
   }
   unattend_live(id) {
     this._service.unattend(id)

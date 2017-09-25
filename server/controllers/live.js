@@ -32,7 +32,7 @@ module.exports = {
           var file_name = ''
           if(file_type) {
             file_name = `${user._id}${new Date().getTime()}.${file_type[1]}`
-            file.mv(path.resolve(__dirname, '../../client/src/assets/lives', file_name), error => {  })
+            file.mv(path.resolve(__dirname, '../../static/lives', file_name), error => {  })
             live.image = file_name
           }
         }

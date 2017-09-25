@@ -71,7 +71,7 @@ export class Home2Component implements OnInit {
     }
   }
   show_image(src) {
-    return `url(assets/lives/${src})`
+    return `url(lives/${src})`
   }
   open_live(id) {
     this._router.navigate(['/live', id])

@@ -94,7 +94,7 @@ export class Profile3Component implements OnInit {
     this.dialog.open(CreateLiveComponent)
   }
   show_image(src) {
-    return `url(assets/lives/${src})`
+    return `url(lives/${src})`
   }
   open_live(id) {
     this._router1.navigate(['/live', id])
