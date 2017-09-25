@@ -126,7 +126,6 @@ export class Home2Component implements OnInit {
       for(let live of data.data._lives) {
         this.all_lives.push({live: live, user: this.user_name, user_id: this.user_id})
       }
-      console.log(this.all_lives)
     })
   }
 

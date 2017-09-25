@@ -27,7 +27,7 @@ import { FacebookService, InitParams } from 'ngx-facebook';
       <span *ngIf='fullName.invalid && error.password' class='user-error error-three'>Your password should be at least 6 characters.</span>
 
       <p class='or'>O R</p>
-      <button md-dialog-close (click)='post_data()' 
+      <button md-dialog-close (click)='post_data()'
        [disabled]='formOne.invalid'
        [ngClass]="{'undone': formOne.invalid, 'done': formOne.valid}">D O N E</button>
   </form>

@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, FormControl, ReactiveFormsModule } from '@angular/forms'
 import { HttpModule } from '@angular/http'
-import { MaterialModule } from '@angular/material';
+import { MdDialogModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AgmCoreModule } from '@agm/core';
 import { FacebookModule } from 'ngx-facebook';
@@ -72,7 +72,7 @@ import { FollowersComponent } from './followers/followers.component'
     AppRoutingModule,
     FormsModule,
     HttpModule,
-    MaterialModule,
+    MdDialogModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
     AgmCoreModule.forRoot({
