@@ -2,6 +2,7 @@ const mongoose = require('mongoose')
 let User = mongoose.model('User')
 let Live = mongoose.model('Live')
 const path = require("path")
+const fs = require('fs')
 
 module.exports = {
   create_live: (request, response) => {
@@ -127,12 +128,19 @@ module.exports = {
       })
   },
   delete_live: (request, response) => {
-    Live.remove({_id: request.params.id}).then(() => {
-      User.update({_id: request.session.user_id}, { $pull: { _lives: request.params.id} }).then(() => {
-        User.update({},  { $pull: { _attending: request.params.id} }, {multi: true}).then(() => {
-            response.json(true)
+    Live.findOne({_id: request.params.id})
+    .then(data => {
+
+      Live.remove({_id: request.params.id}).then(() => {
+        User.update({_id: request.session.user_id}, { $pull: { _lives: request.params.id} }).then(() => {
+          User.update({},  { $pull: { _attending: request.params.id} }, {multi: true}).then(() => {
+            fs.unlink('../../static/lives/' + data.image, () => {
+              response.json(true)
+            })
+          })
         })
       })
     })
+
   }
 }
