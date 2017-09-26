@@ -37,9 +37,12 @@ export class Home2Component implements OnInit {
 
     this.dialog.afterAllClosed
       .subscribe( () => {
+        console.log('@@@@@@@@@@@ afterAllClosed')
+        console.log('@@@@@@@@@@@ status', this.bodyOverlay.status)
         if(this.bodyOverlay.status) {
+
           this.bodyOverlay.status = false
-          this.ngOnInit()
+          this.master()
         }
       })
   }
@@ -108,8 +111,8 @@ export class Home2Component implements OnInit {
           }
         }
       }
+      return this._service.following_interests_lives()
     })
-    this._service.following_interests_lives()
       .then(data => {
         for(let live of data.data) {
           this.all_lives.push({live: live, user: live._user.fullname, user_id: live._user._id})
@@ -120,8 +123,8 @@ export class Home2Component implements OnInit {
           for(let live of data.data) {
             this.all_lives.push({live: live, user: live._user.fullname, user_id: live._user._id})
           }
+          return this._service.user_lives()
         })
-  this._service.user_lives()
     .then(data => {
       for(let live of data.data._lives) {
         this.all_lives.push({live: live, user: this.user_name, user_id: this.user_id})

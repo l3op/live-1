@@ -8,7 +8,7 @@ import { Subject } from 'rxjs/Subject'
 
 @Injectable()
 export class LiveService {
-  private url = '54.191.212.132'
+  private url = 'http://54.191.212.132/'
   private socket
   constructor(private _http: Http) {
     this.socket = io(this.url)

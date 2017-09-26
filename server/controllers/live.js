@@ -134,7 +134,7 @@ module.exports = {
       Live.remove({_id: request.params.id}).then(() => {
         User.update({_id: request.session.user_id}, { $pull: { _lives: request.params.id} }).then(() => {
           User.update({},  { $pull: { _attending: request.params.id} }, {multi: true}).then(() => {
-            fs.unlink('../../static/lives/' + data.image, () => {
+            fs.unlink('/../../static/lives/' + data.image, () => {
               response.json(true)
             })
           })

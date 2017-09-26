@@ -158,6 +158,7 @@ export class CreateLiveComponent implements OnInit {
     this._service.create_live(form_data)
       .then(data => {
         this.interests = []
+        console.log("Here1")
       })
       .catch(error => console.log(error))
   }
